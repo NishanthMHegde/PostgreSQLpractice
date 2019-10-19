@@ -1,0 +1,47 @@
+Aggregate functions: Used to apply mathematical functions to a group of rows selected by an aggregate or select function.
+
+1. SELECT MAX(amount) FROM payment;
+2.SELECT MIN(amount) FROM payment;
+3. SELECT AVG(amount) FROM payment;
+4. SELECT COUNT(amount) FROM payment;
+5. SELECT SUM(amount) FROM payment;
+
+GROUP BY (with aggregate functions): Group by is used to select unique column values on the column which is grouped and then apply an aggregate function to a non-grouped column. It acts like DISTINCT by selecting distinct column values.
+
+1. SELECT customer_id, MAX(amount) FROM payment GROUP BY customer_id;
+2.SELECT customer_id, MIN(amount) FROM payment GROUP BY customer_id;
+3. SELECT customer_id, AVG(amount) FROM payment GROUP BY customer_id;
+4. SELECT customer_id, COUNT(amount) FROM payment GROUP BY customer_id;
+5. SELECT customer_id, SUM(amount) FROM payment GROUP BY customer_id;
+
+Trivia:
+Question 1: Select the customer who has done the most number of transactions
+
+Query: SELECT customer_id, COUNT(amount) FROM payment GROUP BY customer_id ORDER BY COUNT(amount) DESC;
+
+Question 2: Select the customer who has spent the highest amount in all of his transactions
+Query: SELECT customer_id, SUM(amount) FROM payment GROUP BY customer_id ORDER BY SUM(amount) DESC;
+
+
+Question 3: Select the film genre which has had the highest rental rate collected from renting
+
+Query: SELECT rating, SUM(rental_rate) FROM film GROUP BY rating ORDER BY SUM(rental_rate) DESC;
+
+Question 4: Select the movie genre which has had the least duration of rent.
+
+Query: SELECT rating, SUM(rental_duration) FROM film GROUP BY rating ORDER BY SUM(rental_duration) ASC;
+
+Question 5: Select the movie genre which has been rented the least
+
+Query: SELECT rating, COUNT(*) FROM film GROUP BY rating ORDER BY  COUNT(*) ASC;
+
+
+HAVING: HAVING is like a WHERE statement which is used to provide conditional statements on the column on which 
+group by is initiated. 
+
+Question 1: Select all movie ratings who have an average rental duration greater than 5 hours. 
+Query: SELECT rating, ROUND(AVG(rental_duration),2) FROM film GROUP BY rating HAVING ROUND(AVG(rental_duration),2)>=5;
+
+Question 2: Select the staff which has collected an average payment of more than 4.00$  where customer_id > 350 and less than 420
+
+SELECT staff_id, ROUND(AVG(amount),2 ) FROM payment WHERE customer_id BETWEEN 350 and 420 GROUP BY staff_id HAVING ROUND(AVG(amount),2 )>=4;
