@@ -1,0 +1,3 @@
+Alias: Used to rename the selected column or table to make it more readable. 
+1. SELECT first_name, last_name AS surname FROM customer; 
+2. SELECT title, description, release_year, rating as genre, length as movie_length FROM film;
