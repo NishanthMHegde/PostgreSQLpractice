@@ -1,0 +1,16 @@
+UNION: UNION is used to combine the result of one query with the results of another query.
+Things to keep in mind:
+
+1. The results of both queries should contain same number of columns.
+2. The results of both queries should have columns of same datatypes.
+3. Duplicate rows(rows which have same values for all columns) will be removed as part of normalization.
+
+UNION ALL: UNION ALL is used to combine the result of one query with the results of another query and preserve the duplicate rows.
+
+Syntax:
+
+SELECT column1, column2, ... columnN FROM table1
+WHERE condition1
+UNION
+SELECT column1, column2, ... columnN FROM table2
+WHERE condition2;
