@@ -1,0 +1,38 @@
+Joins: Joins are used to join columns of one table with the columns of one table based on the match condition
+between the primary key of one table and the corresponding foreign key in the other table. 
+
+Types of Joins:
+
+1. INNER JOIN: Used to join columns of one table with the columns of one table based ONLY IF match condition
+between the primary key of one table and the corresponding foreign key in the other table is met. The common elements between the two tables are joined. NULL values are ignored.
+
+Syntax:
+SELECT table1.A, table1.pka, table2.B, table2.fkb
+FROM table1
+INNER JOIN table2 ON table1.pka = table2.fkb; 
+
+(here pka = primary key A,
+fkb = foreign key in B)
+
+Examples:
+
+A. 
+SELECT customer.customer_id ,first_name, last_name, payment.staff_id
+FROM customer
+INNER JOIN payment ON customer.customer_id=payment.customer_id;  
+
+B. 
+SELECT customer.customer_id ,first_name, last_name as surname, payment.staff_id
+FROM customer
+INNER JOIN payment ON customer.customer_id=payment.customer_id;
+
+C.
+SELECT payment.staff_id, COUNT(*)
+FROM customer
+INNER JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY payment.staff_id;
+
+D.
+SELECT film.title, film.description, release_year, language.name as language_name
+FROM film 
+INNER JOIN language ON film.language_id=language.language_id;
