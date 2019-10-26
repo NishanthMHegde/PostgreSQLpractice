@@ -36,3 +36,78 @@ D.
 SELECT film.title, film.description, release_year, language.name as language_name
 FROM film 
 INNER JOIN language ON film.language_id=language.language_id;
+
+
+
+2. FULL OUTER JOIN : Used to select all rows from the first table and all rows from second table. If match condition is not fulfilled, then NULL value is added.
+Examples:
+A. 
+SELECT customer.customer_id ,first_name, last_name, payment.staff_id
+FROM customer
+FULL OUTER JOIN payment ON customer.customer_id=payment.customer_id;  
+
+B. 
+SELECT customer.customer_id ,first_name, last_name as surname, payment.staff_id
+FROM customer
+FULL OUTER JOIN payment ON customer.customer_id=payment.customer_id;
+
+C.
+SELECT payment.staff_id, COUNT(*)
+FROM customer
+FULL OUTER JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY payment.staff_id;
+
+D.
+SELECT film.title, film.description, release_year, language.name as language_name
+FROM film 
+FULL OUTER JOIN language ON film.language_id=language.language_id;
+
+3. LEFT JOIN: Select all rows in the first table (left table) and the rows in the second table which match the ON condition.
+Otherwise null value is added to the right table. 
+
+Examples:
+A. 
+SELECT customer.customer_id ,first_name, last_name, payment.staff_id
+FROM customer
+LEFT JOIN payment ON customer.customer_id=payment.customer_id;  
+
+B. 
+SELECT customer.customer_id ,first_name, last_name as surname, payment.staff_id
+FROM customer
+LEFT JOIN payment ON customer.customer_id=payment.customer_id;
+
+C.
+SELECT payment.staff_id, COUNT(*)
+FROM customer
+LEFT JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY payment.staff_id;
+
+D.
+SELECT film.title, film.description, release_year, language.name as language_name
+FROM film 
+LEFT JOIN language ON film.language_id=language.language_id;
+
+4. RIGHT JOIN: Select all rows in the right table (second table) and rows in the left table which only meet the ON condition. If condition
+is not met in the right table then null is added.
+
+Examples:
+A. 
+SELECT customer.customer_id ,first_name, last_name, payment.staff_id
+FROM customer
+RIGHT JOIN payment ON customer.customer_id=payment.customer_id;  
+
+B. 
+SELECT customer.customer_id ,first_name, last_name as surname, payment.staff_id
+FROM customer
+RIGHT JOIN payment ON customer.customer_id=payment.customer_id;
+
+C.
+SELECT payment.staff_id, COUNT(*)
+FROM customer
+RIGHT JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY payment.staff_id;
+
+D.
+SELECT film.title, film.description, release_year, language.name as language_name
+FROM film 
+RIGHT JOIN language ON film.language_id=language.language_id;
