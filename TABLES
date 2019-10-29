@@ -1,0 +1,62 @@
+1. CREATE TABLE: A table should consist of column names, data types, constraints whih can be column constraints or table constraints,
+primary key and foreign key.
+
+Constraints:
+UNIQUE constraint
+NOT-NULL cnstraint
+CHECK with constraint
+PRIMARY KEY 
+FOREIGN KEY
+
+Primary key: One or more columns in a table which can uniquely identify any row in the table. If more than 1 column needs to be used for primary key, then a table primary key constraint needs to be added. Should be unique and NOT NULL.
+
+Foreign key: One or more columns in a table which can be used to uniquely identify a primary key in another table. The table which has foreign key is called Child table or Referencing table and the table with primary key is called parent table or referenced table.
+
+Example of table creation:
+
+CREATE TABLE users (
+user_id serial PRIMARY KEY,
+name VARCHAR(50),
+email VARCHAR(50) UNIQUE NOT NULL,
+active BOOLEAN,
+birth_date DATE CHECK (birth_date > '1900-01-01')
+);
+
+2. INSERT INTO: We can insert data into a table by specifying the list of column names and its corresponding values. We need to enter the data according to the data type specified while creating the table.
+
+Examples:
+
+A. INSERT INTO users(name,email,active,birth_date)
+	VALUES('Nishanth','nhegde12@gmail.com',TRUE,'1996-04-18');
+
+B.INSERT INTO users(name,email,active,birth_date)
+	VALUES('Jadeja','iamjadeja@gmail.com',TRUE,'1988-12-06'),
+	('Kohli','kingkohli@gmail.com',TRUE,'1988-12-05'),
+	('Kapil Dev','kapildev@gmail.com',FALSE,'1960-12-05');
+
+3. ALTER TABLE: A table can be altered to modify any column name, remove a column, change column data type, or rename a table itself.
+
+Examples:
+
+A. ALTER TABLE users ADD COLUMN gender VARCHAR(14) CHECK (gender in ['male', 'female', 'NA']);
+B.ALTER TABLE users DROP COLUMN active;
+C.ALTER TABLE users RENAME COLUMN name TO full_name;
+D. ALTER TABLE users RENAME TO clients;
+E. ALTER TABLE clients ALTER COLUMN birth_date DATE CHECK(birth_date > '1800-01-01');
+
+4. UPDATE: Used to update one or more tables of a table by using a WHERE condition to select the rows of the table.
+
+Examples:
+A. UPDATE clients SET gender = 'male' WHERE full_name='Nishanth';
+B. UPDATE clients SET gender = 'male';
+
+5. Deleting rows from table: Used to delete rows of a table based on a WHERE condition on the column values.
+
+Examples:
+A. DELETE FROM clients WHERE full_name='Kohli';
+B. DELETE FROM clients;
+
+5. DROP TABLE: Used to drop an entire table and all its rows.
+Examples:
+
+DROP TABLE clients;
