@@ -1,0 +1,30 @@
+CONSTRAINTS: Used to decide if a piece of data can be added to the column.
+
+Different constraints are:
+
+1. NOT NULL : The value of column cannot be empty.
+Example:
+
+CREATE TABLE link(
+url_id serial PRIMARY KEY,
+url VARCHAR(50) NOT NULL,
+description VARCHAR(50) UNIQUE,
+link_creation DATE CHECK(link_creation>'2000-01-01')
+);
+
+INSERT INTO link(description) VALUES('First URL');
+The above statement should throw an error:
+ERROR:  null value in column "url" violates not-null constraint
+
+2. UNIQUE: The value of the column needs to be unique. The same value for a column cannot repeat twice.
+
+Example:
+INSERT INTO link(url, description) VALUES('www.A.com','First URL'), ('www.B.com','First URL');
+The above statement should throw an error:
+ERROR:  duplicate key value violates unique constraint "link_description_key"
+
+3. CHECK: The CHECK constraint is used to check whether the inserted data satisfies the check condition and returns a boolean. If true, then data is inserted into the column. 
+Example:
+INSERT INTO link(url, description, link_creation) VALUES('www.C.com','Third URL','2001-01-01'),('www.D.com','Second URL','2002-12-31');
+The above statement should throw an error:
+ERROR:  new row for relation "link" violates check constraint "link_link_creation_check"
